@@ -33,18 +33,19 @@ $user = new User('Domenico', 'Galileo', true, 2025);
 <body>
 
     <div class="container my-4">
-        <div class="row row-cols-4">
+
+    <h1 class="text-center mt-4">Pet Shop</h1>
+        <div class="row row-cols-4 my-4">
             <?php foreach ($products as $product) : ?>
                 <div class="col">
                     <div class="card">
                         <img src="<?php echo $product->image ?>" alt="">
-                        <div class="card-text text-center">
-                            <h4><?php echo $product->tipo_prodotto ?></h4>
-                            <p><?php echo $product->tipo_animale ?></p>
-                            <p>quantità <?php echo $product->quantita ?></p>
-                            <p>prezzo € <?php echo $product->getFinalPrice($user, $product->prezzo) ?></p>
-                            <p>disponibile <?php echo $product->setAvailable($product->available) ?></p>
-                            <p>
+                        <div class="card-text text-center p-3">
+                            <h4 class="my-2"><?php echo strtoupper($product->tipo_prodotto) ?></h4>
+                            <div class="py-1"><?php echo ucfirst(strtolower($product->tipo_animale)) ?></div>
+                            <div class="py-1">Quantità <?php echo $product->quantita ?></div>
+                            <div class="py-1">Prezzo € <?php echo $product->getFinalPrice($user, $product->prezzo) ?></div>
+                            <div class="py-1">
                                 <?php
                                 try {
                                     echo 'Stock: ' . $product->in_stock();
@@ -52,7 +53,7 @@ $user = new User('Domenico', 'Galileo', true, 2025);
                                     echo "Stock: " . $e->getMessage();
                                 }
                                 ?>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
