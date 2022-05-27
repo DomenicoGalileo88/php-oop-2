@@ -44,7 +44,15 @@ $user = new User('Domenico', 'Galileo', true, 2025);
                             <p>quantità <?php echo $product->quantita ?></p>
                             <p>prezzo € <?php echo $product->getFinalPrice($user, $product->prezzo) ?></p>
                             <p>disponibile <?php echo $product->setAvailable($product->available) ?></p>
-                            <p>disponibile <?php echo $product->in_stock($product->available, $product->quantita) ?></p>
+                            <p>
+                                <?php
+                                try {
+                                    echo 'Stock: ' . $product->in_stock();
+                                } catch (Exception $e) {
+                                    echo "Stock: " . $e->getMessage();
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>

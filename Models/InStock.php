@@ -2,12 +2,12 @@
 
 trait InStock
 {
-    public function in_stock(Accessory $accessory, Product $product)
+    public function in_stock()
     {
-        if ($accessory->available) {
-            echo $product->quantita;
+        if ($this->available) {
+            return $this->quantita;
         } else{
-            echo 'Non disponibile';
+            throw new Exception('N.D.');
         }
     }
 
