@@ -2,12 +2,13 @@
 
 require __DIR__ . '/Models/Product.php';
 require __DIR__ . '/Models/User.php';
+require __DIR__ . '/Models/Accessory.php';
 
 $products = [
-    new Product('cane', 2, 10, 'collare', 'https://picsum.photos/200/200'),
-    new Product('cane', 4, 30, 'cuccia', 'https://picsum.photos/200/200'),
-    new Product('cavallo', 1, 100, 'sella', 'https://picsum.photos/200/200'),
-    new Product('uccello', 15, 8, 'semi', 'https://picsum.photos/200/200'),
+    new Accessory('cane', 2, 10, 'collare', 'https://picsum.photos/200/200', true),
+    new Accessory('cane', 4, 30, 'cuccia', 'https://picsum.photos/200/200', false),
+    new Accessory('cavallo', 1, 100, 'sella', 'https://picsum.photos/200/200', false),
+    new Accessory('uccello', 1, 30, 'gabbia', 'https://picsum.photos/200/200', true),
 ];
 
 $user = new User('Domenico', 'Galileo', true, 2025);
@@ -42,6 +43,8 @@ $user = new User('Domenico', 'Galileo', true, 2025);
                             <p><?php echo $product->tipo_animale ?></p>
                             <p>quantità <?php echo $product->quantita ?></p>
                             <p>prezzo € <?php echo $product->getFinalPrice($user, $product->prezzo) ?></p>
+                            <p>disponibile <?php echo $product->setAvailable($product->available) ?></p>
+                            <p>disponibile <?php echo $product->in_stock($product->available, $product->quantita) ?></p>
                         </div>
                     </div>
                 </div>
